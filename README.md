@@ -15,6 +15,8 @@ Windows 10 22H2 19045.2486
 
 ## 高版本的JDK需要下载并配置额外Jar包
 
+Jar包 可以从链接下载或直接从项目中的lib文件夹中复制。
+
 1. [tools.jar(下载链接)](http://www.java2s.com/Code/Jar/t/Downloadtools21jar.htm) 
 
     下载后将其放在 `%JAVA_HOME%/lib/`[^1] 中，命名为 `tools.jar`。
