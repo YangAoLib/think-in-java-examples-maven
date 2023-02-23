@@ -6,7 +6,7 @@ public class Splitting {
   public static String knights =
     "Then, when you have found the shrubbery, you must " +
     "cut down the mightiest tree in the forest... " +
-    "with... a herring!";
+    "with... a herring! 你好";
   public static void split(String regex) {
     System.out.println(
       Arrays.toString(knights.split(regex)));
@@ -15,6 +15,9 @@ public class Splitting {
     split(" "); // Doesn't have to contain regex chars
     split("\\W+"); // Non-word characters
     split("n\\W+"); // 'n' followed by non-word characters
+    split("(the|you)");
+    System.out.println(knights.replaceAll("[aeiouAEIOU]", "_"));
+    System.out.println(knights.replaceAll("\\B", "_"));
   }
 } /* Output:
 [Then,, when, you, have, found, the, shrubbery,, you, must, cut, down, the, mightiest, tree, in, the, forest..., with..., a, herring!]

@@ -1,22 +1,58 @@
 package edu.yangao.strings;
 //: strings/Receipt.java
-import java.util.*;
+
+import java.util.Formatter;
 
 public class Receipt {
   private double total = 0;
-  private Formatter f = new Formatter(System.out);
+  private final Formatter f = new Formatter(System.out);
+
+  /**
+   * 名称长度
+   */
+  private final Integer NAME_LENGTH = 15;
+
+  /**
+   * 名称最多显示字符数量
+   */
+  private final Integer NAME_MAX_LENGTH = 15;
+
+  /**
+   * qty 长度
+   */
+  private final Integer QTY_LENGTH = 5;
+
+  /**
+   * 价格长度
+   */
+  private final Integer PRICE_LENGTH = 10;
+
+  /**
+   * 价格小数点后长度
+   */
+  private final Integer PRICE_POINT_LENGTH = 2;
+
   public void printTitle() {
-    f.format("%-15s %5s %10s\n", "Item", "Qty", "Price");
-    f.format("%-15s %5s %10s\n", "----", "---", "-----");
+    // item长度
+    Integer itemLength = 15;
+    // 格式用字符串
+    String formatString = String.format("%%-%ds %%%ds %%%ds\n", itemLength, QTY_LENGTH, PRICE_LENGTH);
+    f.format(formatString, "Item", "Qty", "Price");
+    f.format(formatString, "----", "---", "-----");
   }
   public void print(String name, int qty, double price) {
-    f.format("%-15.15s %5d %10.2f\n", name, qty, price);
+    // 格式用字符串
+    String formatString = String.format("%%-%d.%ds %%%dd %%%d.%df\n", NAME_LENGTH, NAME_MAX_LENGTH, QTY_LENGTH, PRICE_LENGTH, PRICE_POINT_LENGTH);
+    f.format(formatString, name, qty, price);
     total += price;
   }
   public void printTotal() {
-    f.format("%-15s %5s %10.2f\n", "Tax", "", total*0.06);
-    f.format("%-15s %5s %10s\n", "", "", "-----");
-    f.format("%-15s %5s %10.2f\n", "Total", "",
+    // 格式用字符串
+    String formatString = String.format("%%-%d.%ds %%%ds %%%d.%df\n", NAME_LENGTH, NAME_MAX_LENGTH, QTY_LENGTH, PRICE_LENGTH, PRICE_POINT_LENGTH);
+    String formatStringSecond = String.format("%%-%ds %%%ds %%%ds\n", NAME_LENGTH, QTY_LENGTH, PRICE_LENGTH);
+    f.format(formatString, "Tax", "", total*0.06);
+    f.format(formatStringSecond, "", "", "-----");
+    f.format(formatString, "Total", "",
       total * 1.06);
   }
   public static void main(String[] args) {
