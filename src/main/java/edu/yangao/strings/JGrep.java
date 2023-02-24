@@ -1,10 +1,16 @@
 package edu.yangao.strings;
 //: strings/JGrep.java
 // A very simple version of the "grep" program.
-// {Args: src/main/java/edu/yangao/strings/JGrep.java "\b[Ssct]\w+"}
+// {Args: src/main/java/edu/yangao/strings/JGrep.java "^\s*\b[sct]\w+" 2}
+// {Args: src/main/java/edu/yangao/strings/JGrep.java "^\s*\b[sct]\w+" 10}
+// {Args: src/main/java/edu/yangao/strings/ ^\s*\b[sct]\w+ 2}
+// {Args: src/main/java/edu/yangao/strings/ ^\s*\b[sct]\w+ 10}
 
 import edu.yangao.net.mindview.util.TextFile;
 
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,15 +20,34 @@ public class JGrep {
       System.out.println("Usage: java JGrep file regex");
       System.exit(0);
     }
-    Pattern p = Pattern.compile(args[1]);
+    // 第三个参数 将想要设置的模式 数值相加写上及可
+    Pattern p = Pattern.compile(args[1], Integer.parseInt(args[2]));
     // Iterate through the lines of the input file:
     int index = 0;
     Matcher m = p.matcher("");
-    for(String line : new TextFile(args[0])) {
-      m.reset(line);
-      while(m.find())
-        System.out.println(index++ + ": " +
-          m.group() + ": " + m.start());
+
+    // 判断传入的是否是文件夹, 然后进行处理
+    File argFile = new File(args[0]);
+    List<File> fileList = argFile.isDirectory() ? List.of(argFile.listFiles()) : Collections.singletonList(argFile);
+    // 按 列表进行 文件内容的读取
+    for (File singleFile : fileList) {
+      // 只对文件进行读取, 跳过目录
+      if (singleFile.isDirectory()) continue;
+      for(String line : new TextFile(singleFile.getPath())) {
+        m.reset(line);
+        while(m.find())
+          System.out.println(index++ + ": " + m.group() + ": " + m.start());
+      }
+    }
+    // 重新记数
+    index = 0;
+    for (File singleFile : fileList) {
+      // 只对文件进行读取, 跳过目录
+      if (singleFile.isDirectory()) continue;
+      m.reset(TextFile.read(singleFile.getPath()));
+      while (m.find()) {
+        System.out.println(index++ + ": " + m.group() + ": " + m.start());
+      }
     }
   }
 } /* Output: (Sample)
