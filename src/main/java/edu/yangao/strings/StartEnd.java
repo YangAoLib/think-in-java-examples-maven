@@ -5,14 +5,15 @@ import static edu.yangao.net.mindview.util.Print.*;
 
 public class StartEnd {
   public static String input =
-    "As long as there is injustice, whenever a\n" +
-    "Targathian baby cries out, wherever a distress\n" +
-    "signal sounds among the stars ... We'll be there.\n" +
-    "This fine ship, and this fine crew ...\n" +
-    "Never give up! Never surrender!";
+          """
+                  As long as there is injustice, whenever a
+                  Targathian baby cries out, wherever a distress
+                  signal sounds among the stars ... We'll be there.
+                  This fine ship, and this fine crew ...
+                  Never give up! Never surrender!""";
   private static class Display {
     private boolean regexPrinted = false;
-    private String regex;
+    private final String regex;
     Display(String regex) { this.regex = regex; }
     void display(String message) {
       if(!regexPrinted) {
@@ -37,10 +38,10 @@ public class StartEnd {
         + m.start() + " end = " + m.end());
   }
   public static void main(String[] args) {
-    for(String in : input.split("\n")) {
+    for(String in : Groups.POEM.split("\n")) {
       print("input : " + in);
-      for(String regex : new String[]{"\\w*ere\\w*",
-        "\\w*ever", "T\\w+", "Never.*?!"})
+      for(String regex : new String[]{"\\w*th\\w*",
+        "\\w*ever", "T\\w+", "The.*?\\s??"})
         examine(in, regex);
     }
   }
