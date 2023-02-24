@@ -1,9 +1,12 @@
 package edu.yangao.strings;
 //: strings/JGrep.java
 // A very simple version of the "grep" program.
-// {Args: JGrep.java "\\b[Ssct]\\w+"}
-import java.util.regex.*;
-import edu.yangao.net.mindview.util.*;
+// {Args: src/main/java/edu/yangao/strings/JGrep.java "\\b[Ssct]\\w+"}
+
+import edu.yangao.net.mindview.util.TextFile;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class JGrep {
   public static void main(String[] args) throws Exception {

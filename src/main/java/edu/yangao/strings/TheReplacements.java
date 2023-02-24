@@ -1,8 +1,12 @@
 package edu.yangao.strings;
 //: strings/TheReplacements.java
-import java.util.regex.*;
-import edu.yangao.net.mindview.util.*;
-import static edu.yangao.net.mindview.util.Print.*;
+
+import edu.yangao.net.mindview.util.TextFile;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static edu.yangao.net.mindview.util.Print.print;
 
 /*! Here's a block of text to use as input to
     the regular expression matcher. Note that we'll
@@ -12,7 +16,7 @@ import static edu.yangao.net.mindview.util.Print.*;
 
 public class TheReplacements {
   public static void main(String[] args) throws Exception {
-    String s = TextFile.read("TheReplacements.java");
+    String s = TextFile.read("src/main/java/edu/yangao/strings/TheReplacements.java");
     // Match the specially commented block of text above:
     Matcher mInput =
       Pattern.compile("/\\*!(.*)!\\*/", Pattern.DOTALL)
