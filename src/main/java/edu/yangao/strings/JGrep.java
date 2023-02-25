@@ -32,18 +32,23 @@ public class JGrep {
     // 按 列表进行 文件内容的读取
     for (File singleFile : fileList) {
       // 只对文件进行读取, 跳过目录
-      if (singleFile.isDirectory()) continue;
+      if (singleFile.isDirectory()) {
+        continue;
+      }
       for(String line : new TextFile(singleFile.getPath())) {
         m.reset(line);
-        while(m.find())
+        while(m.find()) {
           System.out.println(index++ + ": " + m.group() + ": " + m.start());
+        }
       }
     }
     // 重新记数
     index = 0;
     for (File singleFile : fileList) {
       // 只对文件进行读取, 跳过目录
-      if (singleFile.isDirectory()) continue;
+      if (singleFile.isDirectory()) {
+        continue;
+      }
       m.reset(TextFile.read(singleFile.getPath()));
       while (m.find()) {
         System.out.println(index++ + ": " + m.group() + ": " + m.start());
