@@ -41,7 +41,7 @@
             <artifactId>tools</artifactId>
             <version>2.1</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/tools.jar</systemPath>
+            <systemPath>${basedir}/lib/tools-2.1.jar</systemPath>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax/jnlp -->
         <dependency>
