@@ -29,6 +29,19 @@
             <groupId>com.moparisthebest.aptIn16</groupId>
             <artifactId>apt-mirror-api</artifactId>
             <version>0.2</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.sun</groupId>
+                    <artifactId>tools</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>com.sun</groupId>
+            <artifactId>tools</artifactId>
+            <version>2.1</version>
+            <scope>system</scope>
+            <systemPath>${basedir}/lib/tools-2.1.jar</systemPath>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax/jnlp -->
         <dependency>
@@ -36,7 +49,7 @@
             <artifactId>jnlp</artifactId>
             <version>7.0</version>
             <scope>system</scope>
-            <systemPath>${java.home}/../lib/jnlp-7.0.jar</systemPath>
+            <systemPath>${basedir}/lib/jnlp-7.0.jar</systemPath>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.javassist/javassist -->
         <dependency>
