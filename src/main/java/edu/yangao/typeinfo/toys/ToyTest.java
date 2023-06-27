@@ -7,16 +7,17 @@ import static edu.yangao.net.mindview.util.Print.*;
 interface HasBatteries {}
 interface Waterproof {}
 interface Shoots {}
+interface Glass {}
 
 class Toy {
   // Comment out the following default constructor
   // to see NoSuchMethodError from (*1*)
-  Toy() {}
+  // Toy() {}
   Toy(int i) {}
 }
 
 class FancyToy extends Toy
-implements HasBatteries, Waterproof, Shoots {
+implements HasBatteries, Waterproof, Shoots, Glass {
   FancyToy() { super(1); }
 }
 
@@ -30,7 +31,7 @@ public class ToyTest {
   public static void main(String[] args) {
     Class c = null;
     try {
-      c = Class.forName("typeinfo.toys.FancyToy");
+      c = Class.forName("edu.yangao.typeinfo.toys.FancyToy");
     } catch(ClassNotFoundException e) {
       print("Can't find FancyToy");
       System.exit(1);
